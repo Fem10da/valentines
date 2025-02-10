@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Зачекайте...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    /* Стилі прелоадера */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fdc9d1;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #preloader {
+      text-align: center;
+    }
+    #preloader h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    #preloader p {
+      font-size: 1.2em;
+    }
+    /* Стилі для зображень */
+    #preloader img {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script>
+    // Функція перевірки часу та редіректу
+    function checkPreloaderTime() {
+      // Цільова дата: 14 лютого 2024 о 10:00
+      // (місяці рахуються від 0, тому для лютого використовується 1)
+      var targetTime = new Date(2025, 1, 14, 10, 0, 0);
+      var now = new Date();
+      console.log("preloader.html: Поточний час:", now, "Цільовий час:", targetTime);
+      
+      if (now >= targetTime) {
+        console.log("preloader.html: Час настав. Оновлення вмісту прелоадера.");
+        var preloaderDiv = document.getElementById("preloader");
+        // Замінюємо вміст: показуємо інше зображення та текст
+        preloaderDiv.innerHTML = '<img src="ready.png" alt="Готово"><h1>Тепер можна подивитися</h1>';
+        // Через 3 секунди редірект на main.html
+        setTimeout(function(){
+          console.log("preloader.html: Перехід на main.html.");
+          window.location.href = "main.html";
+        }, 3000);
+      } else {
+        console.log("preloader.html: Ще рано, перевірка через 10 секунд.");
+        setTimeout(checkPreloaderTime, 10000);
+      }
+    }
+    
+    // Запуск перевірки після завантаження документа
+    document.addEventListener('DOMContentLoaded', checkPreloaderTime, false);
+  </script>
+</head>
+<body>
+  <div id="preloader">
+    <!-- GIF для очікування -->
+    <img id="loadingGif" src="loading.gif" alt="Loading...">
+    <h1>Зачекайте...</h1>
+    <p>Цю сторінку ви зможете побачити після 10:00 14 лютого</p>
+  </div>
+</body>
+</html>

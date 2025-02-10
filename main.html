@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Наша Історія Кохання</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!-- Оголошення вбудованого шрифту "digit" -->
+  <style type="text/css">
+    @font-face {
+      font-family: digit;
+      src: url('digital.ttf') format("truetype");
+    }
+    /* Основний контент відображається за замовчуванням */
+    #mainDiv {
+      display: block;
+    }
+  </style>
+
+  <!-- Підключення зовнішнього CSS -->
+  <link href="css/default.css" type="text/css" rel="stylesheet">
+
+  <!-- Підключення JS-бібліотек -->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/garden.js"></script>
+  <script type="text/javascript" src="js/functions.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      console.log("main.html: документ завантажено");
+
+      // Встановлюємо дату для таймера та анімації (24 лютого 2024 о 12:05)
+      var together = new Date();
+      together.setFullYear(2024, 1, 24);
+      together.setHours(12);
+      together.setMinutes(5);
+      together.setSeconds(0);
+      together.setMilliseconds(0);
+      console.log("main.html: таймер встановлено:", together);
+
+      // Перевірка підтримки canvas
+      if (!document.createElement('canvas').getContext) {
+        console.error("HTML5 canvas не підтримується!");
+        var msg = document.createElement("div");
+        msg.id = "errorMsg";
+        msg.innerHTML = "Ваш браузер не підтримує HTML5! Рекомендуємо використовувати сучасний браузер.";
+        document.body.appendChild(msg);
+        $("#code").hide();
+        document.execCommand("stop");
+      } else {
+        // Запуск анімації серця через 5 секунд
+        setTimeout(function () {
+          console.log("main.html: Запуск анімації серця");
+          startHeartAnimation();
+        }, 5000);
+        
+        timeElapse(together);
+        setInterval(function () {
+          timeElapse(together);
+        }, 500);
+        
+        $("#code").typewriter();
+      }
+      
+      // Виклик adjustLayout() для обчислення offset після показу контенту
+      adjustLayout();
+    });
+
+    // Функція для обчислення та встановлення offsetX та offsetY
+    function adjustLayout() {
+      // Встановлюємо глобальні змінні (вони потрібні для функції getHeartPoint)
+      window.offsetX = $("#loveHeart").width() / 2;
+      window.offsetY = $("#loveHeart").height() / 2 - 55;
+      adjustCodePosition();
+      console.log("main.html: adjustLayout – offsetX =", window.offsetX, ", offsetY =", window.offsetY);
+    }
+  </script>
+</head>
+<body>
+  <div id="mainDiv">
+    <div id="content">
+      <div id="code">
+        <span class="comments">##</span><br/>
+        <span class="comments"># Я програміст,</span><br/>
+        <span class="comments"># тож пишу код, щоб відсвяткувати День Святого Валентина у програмістський спосіб.</span><br/>
+        <span class="comments">##</span><br/>
+        i = Boy(<span class="string">"Femida aka Vadimka"</span>);<br/>
+        u = Girl(<span class="string">"liutychka aka Anna Zopka"</span>);<br/>
+        <span class="comments"># 24 лютого 2024 я зустрів тебе завдяки Tinder.</span><br/>
+        i.meet(u)<br/>
+        <span class="comments"># Пізніше я зізнався тобі в коханні.</span><br/>
+        i.confess(u)<br/>
+        <span class="comments"># 30 кітня 2024 ти стала моєю дівчиною.</span><br/>
+        u.accepted(i)<br/>
+        <span class="comments"># Відтоді ми щодня проводимо щасливе й гармонійне життя.</span><br/>
+        happy(u, i)<br/>
+        <span class="comments"># Ми насолоджуємося навчанням разом.</span><br/>
+        study(u, i)<br/>
+        <span class="comments"># Ми насолоджуємося смачною їжею разом.</span><br/>
+        dine(u, i)<br/>
+        <span class="comments"># Ми насолоджуємося спільним часом.</span><br/>
+        appoint(u, i)<br/>
+        <span class="comments"># Ми насолоджуємося відпочинком.</span><br/>
+        vacation(u, i)<br/>
+        <span class="comments"># Іноді між нами бувають дрібні конфлікти.</span><br/>
+        conflict(u, i, sometimes=<span class="keyword">True</span>)<br/>
+        <span class="comments"># Але ми стаємо дедалі гармонійнішими разом.</span><br/>
+        u.in_harmony_with(i)<br/>
+        i.in_harmony_with(u)<br/>
+        <span class="comments"># Ти — найбільше кохання мого життя.</span><br/>
+        while <span class="keyword">True</span>:<br/>
+        <span class="placeholder"></span><span class="keyword">if</span> u.with(i):<br/>
+        <span class="placeholder"></span><span class="placeholder"></span>u = everything<br/>
+        <span class="placeholder"></span><span class="keyword">else</span>:<br/>
+        <span class="placeholder"></span><span class="placeholder"></span>everything = u<br/>
+        <span class="comments"># Наші стосунки — це найдорожче, що я маю, і я хочу, щоб вони тривали вічно.</span><br/>
+        i.marry(u, in_the_future=<span class="keyword">True</span>)<br/>
+        i.live_happily_forever_with(u)<br/>
+        <span class="comments"># Кожен день із тобою — це найбільше щастя у моєму житті</span><br/>
+        <span class="comments"># Я кохаю тебе вічно.</span><br/>
+        <span class="comments">##</span><br/>
+      </div>
+
+      <div id="loveHeart">
+        <canvas id="garden"></canvas>
+        <div id="words">
+          <div id="messages">
+            BUBU, я закохався у тебе вже
+            <div id="elapseClock"></div>
+          </div>
+          <div id="loveu">
+            Кохатиму тебе вічно і завжди.<br/>
+            <div class="signature">- Вадим | Анна</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="copyright">
+      Copyright © 2025 
+      <a href="https://github.com/Fem10da">Femida.com</a> 2025
+    </div>
+  </div>
+</body>
+</html>
