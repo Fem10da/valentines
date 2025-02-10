@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Наша Історія Кохання</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Оголошення вбудованого шрифту "digit" -->
+    <style type="text/css">
+        @font-face {
+            font-family: digit;
+            src: url('digital.ttf') format("truetype");
+        }
+    </style>
+
+    <!-- Підключення CSS та бібліотек JS -->
+    <link href="css/default.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/garden.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+</head>
+
+<body>
+<div id="mainDiv">
+    <div id="content">
+        <div id="code">
+            <span class="comments">##</span><br/>
+            <span class="comments"># Я програміст,</span><br/>
+            <span class="comments"># тож пишу код, щоб відсвяткувати День Святого Валентина у програмістський спосіб.</span><br/>
+            <span class="comments">##</span><br/>
+            i = Boy(<span class="string">"Femda aka Vadimka"</span>);<br/>
+            u = Girl(<span class="string">"liutychka aka Anna Zopka"</span>);<br/>
+            <span class="comments"># 24 лютого 2024 я зустрів тебе завдяки Tinder.</span><br/>
+            i.meet(u)<br/>
+            <span class="comments"># Пізніше я зізнався тобі в коханні.</span><br/>
+            i.confess(u)<br/>
+            <span class="comments"># 30 кітня 2024 ти стала моєю дівчиною.</span><br/>
+            u.accepted(i)<br/>
+            <span class="comments"># Відтоді ми щодня проводимо щасливе й гармонійне життя.</span><br/>
+            happy(u, i)<br/>
+            <span class="comments"># Ми насолоджуємося навчанням разом.</span><br/>
+            study(u, i)<br/>
+            <span class="comments"># Ми насолоджуємося смачною їжею разом.</span><br/>
+            dine(u, i)<br/>
+            <span class="comments"># Ми насолоджуємося зустрічами.</span><br/>
+            appoint(u, i)<br/>
+            <span class="comments"># Ми насолоджуємося відпочинком.</span><br/>
+            vacation(u, i)<br/>
+            <span class="comments"># Іноді між нами бувають дрібні конфлікти.</span><br/>
+            conflict(u, i, sometimes=<span class="keyword">True</span>)<br/>
+            <span class="comments"># Але ми стаємо дедалі гармонійнішими разом.</span><br/>
+            u.in_harmony_with(i) <br/>
+            i.in_harmony_with(u) <br/>
+            <span class="comments"># Ти — найбільше кохання мого життя.</span><br/>
+            while <span class="keyword">True</span>:<br/>
+            <span class="placeholder"></span><span class="keyword">if</span> u.with(i):<br/>
+            <span class="placeholder"></span><span class="placeholder"></span>u = everything<br/>
+            <span class="placeholder"></span><span class="keyword">else</span>:<br/>
+            <span class="placeholder"></span><span class="placeholder"></span>everything = u<br/>
+            <span class="comments"># Наші стосунки — це найдорожче, що я маю, і я хочу, щоб вони тривали вічно.</span><br/>
+            i.marry(u, in_the_future=<span class="keyword">True</span>)<br/>
+            i.live_happily_forever_with(u)<br/>
+			<span class="comments"># Кожен день із тобою — це найбільше щастя у моєму житті</span><br/>
+            <span class="comments"># Я кохаю тебе вічно.</span><br/>
+        </div>
+
+        <div id="loveHeart">
+            <canvas id="garden"></canvas>
+            <div id="words">
+                <div id="messages">
+                    BUBU, я закохався у тебе вже
+                    <div id="elapseClock"></div>
+                </div>
+                <div id="loveu">
+                    Кохатиму тебе вічно і завжди.<br/>
+                    <div class="signature">- Вадим | Анна</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="copyright">
+        Copyright © 2025 
+        <a href='https://github.com/Fem10da'>Femida.com</a> 2019-2025
+    </div>
+</div>
+
+<script type="text/javascript">
+    var offsetX = $("#loveHeart").width() / 2;
+    var offsetY = $("#loveHeart").height() / 2 - 55;
+    var together = new Date();
+    // Місяці рахуються з 0 по 11, тож листопад це 10
+    together.setFullYear(2024, 1, 24);
+    together.setHours(15);
+    together.setMinutes(0);
+    together.setSeconds(0);
+    together.setMilliseconds(0);
+
+    // Перевірка підтримки canvas
+    if (!document.createElement('canvas').getContext) {
+        var msg = document.createElement("div");
+        msg.id = "errorMsg";
+        msg.innerHTML = "Ваш браузер не підтримує HTML5!<br/>Рекомендуємо використовувати Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+        document.body.appendChild(msg);
+        $("#code").css("display", "none");
+        document.execCommand("stop");
+    } else {
+        setTimeout(function () {
+            startHeartAnimation();
+        }, 5000);
+
+        timeElapse(together);
+        setInterval(function () {
+            timeElapse(together);
+        }, 500);
+
+        adjustCodePosition();
+        $("#code").typewriter();
+    }
+</script>
+</body>
+</html>
