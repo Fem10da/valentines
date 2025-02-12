@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/project2.css">
+  <title>Valentine's Proposal</title>
+</head>
+<body>
+  <div class="container">
+    <div class="Mainprompt">
+      <img class="image" src="images/cute.gif" alt="Cute GIF">
+      
+      <div class="text">
+        <h1 class="hh" id="name">Привіт, красуне!</h1>
+        <p class="pp" id="question">Ти будеш моєю Валентинкою?</p>
+      </div>
+
+      <div class="buttons">
+        <!-- Прибрали onclick="showMessage('No')" -->
+        <button class="button no" id="no-button">Ні</button>
+        <!-- Кнопка “Так” лишається з onclick -->
+        <button class="button yes" onclick="showMessage('Yes')" id="yesButton">Так</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Універсальна функція
+    function showMessage(response) {
+      if (response === "No") {
+        const noButton   = document.getElementById("no-button");
+        const container  = document.querySelector(".container");
+        const containerWidth  = container.offsetWidth  - noButton.offsetWidth;
+        const containerHeight = container.offsetHeight - noButton.offsetHeight;
+  
+        noButton.style.position = "absolute";
+        document.getElementsByClassName("image")[0].src = "images/gun.gif";
+  
+        const randomX = Math.max(0, Math.floor(Math.random() * containerWidth));
+        const randomY = Math.max(0, Math.floor(Math.random() * containerHeight));
+  
+        noButton.style.left = randomX + "px";
+        noButton.style.top  = randomY + "px";
+  
+        document.getElementById("question").textContent = "Альо, ти що там задумала?";
+        document.getElementById("name").style.display   = "none";
+      }
+  
+      if (response === "Yes") {
+        // Видаляємо елементи, які більше не потрібні
+        document.getElementById("name").remove();
+        document.getElementById("no-button").remove();
+  
+        const yesMessage = document.getElementById("question");
+        yesMessage.textContent     = "Ти моя Bubu 😘";
+        yesMessage.style.display   = "block";
+        yesMessage.style.fontStyle = "normal";
+        document.getElementsByClassName("image")[0].src = "images/kiss.gif";
+  
+        document.getElementById("yesButton").remove();
+  
+        // Через 15 секунд створюємо кнопку "Продовжимо?"
+        setTimeout(function() {
+          const continueButton = document.createElement("button");
+          continueButton.textContent = "Продовжимо?";
+          continueButton.classList.add("button"); // Використовуємо той же клас, що й інші кнопки
+          continueButton.id = "continueButton";
+            
+          continueButton.addEventListener("click", function() {
+            window.location.href = "main1.html"; // Замініть на потрібну адресу
+          });
+            
+          // Додаємо кнопку до контейнера кнопок
+          document.querySelector(".buttons").appendChild(continueButton);
+        }, 15000);
+      }
+    }
+  
+    // 1) Знаходимо кнопку “Ні”
+    const noButton = document.getElementById('no-button');
+  
+    // 2) Додаємо універсальний обробник для десктопів і телефонів.
+    noButton.addEventListener('pointerdown', function(event) {
+      event.preventDefault(); 
+      showMessage('No');
+    });
+  
+    // (НЕобов'язково) Якщо бажаєш, щоб при наведенні мишкою теж спрацьовувало:
+    noButton.addEventListener('mouseenter', function() {
+      showMessage('No');
+    });
+  </script>
+</body>
+</html>

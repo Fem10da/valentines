@@ -1,0 +1,30 @@
+/* preloader.css — стилі для прелоадера (preloader.html) */
+body {
+    margin: 0;
+    padding: 0;
+    background: #fdc9d1;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #preloader {
+    text-align: center;
+  }
+  
+  #preloader h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  #preloader p {
+    font-size: 1.2em;
+  }
+  
+  #preloader img {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  
