@@ -4,8 +4,18 @@
   <title>Зачекайте...</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <button id="startAudio" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; opacity: 5; z-index: 9999; background: transparent; border: none;">
+    <span id="startText" style="display: inline-block; transform: translateY(-300px); color: #963650; font-size: 36px;">
+      Приклади лапку 💔
+    </span>
+  </button>
+  <audio id="bgMusic" src="../music/sad_prev.mp3" loop></audio>
+  
   <style>
     /* Стилі прелоадера */
+    html, body, * {
+      cursor: url('../img/cursor.svg') 16 16, auto;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -68,5 +78,18 @@
     <h1>Зачекайте...</h1>
     <p>Цю сторінку ви зможете побачити після 10:00 14 лютого</p>
   </div>
+  <script> 
+     // Обробка кліку по невидимому оверлею для запуску аудіо
+     document.getElementById("startAudio").addEventListener("click", function() {
+        const bgMusic = document.getElementById("bgMusic");
+        bgMusic.play().then(() => {
+          console.log("Фонова музика запустилась");
+        }).catch((error) => {
+          console.error("Помилка запуску музики:", error);
+        });
+        // Видаляємо кнопку, щоб вона не заважала подальшим взаємодіям
+        this.remove();
+      });
+  </script>
 </body>
 </html>

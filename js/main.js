@@ -60,7 +60,6 @@ const animationTimeline = () => {
     .from(".three", 0.7, {
       opacity: 0,
       y: 10,
-      // масштаб: 0.7
     })
     .to(
       ".three",
@@ -205,7 +204,6 @@ const animationTimeline = () => {
       {
         opacity: 0,
         y: -50,
-        // масштаб: 0.3,
         rotation: 150,
         skewX: "30deg",
         ease: Elastic.easeOut.config(1, 0.5),
@@ -265,14 +263,11 @@ const animationTimeline = () => {
       "+=1"
     );
 
-  // tl.seek("currentStep");
-  // tl.timeScale(2);
-
   // Перезапуск анімації при кліку
-      const replyBtn = document.getElementById("replay");
-    replyBtn.addEventListener("click", () => {
-      window.location.href = "project2.html"; // замініть "target_page.html" на потрібну URL-адресу
-    });
+  const replyBtn = document.getElementById("replay");
+  replyBtn.addEventListener("click", () => {
+    window.location.href = "project2.html";
+  });
 };
 
 // Імпорт даних для налаштування та вставки їх у сторінку

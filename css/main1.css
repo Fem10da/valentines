@@ -1,142 +1,182 @@
-/* main1.css — стилі для сторінки "Фінальний контент" (main1.html) */
+/* main1.css — стилі для сторінки "Фінальний контент" */
 
 /* Основні стилі */
-body {
+html, body {
     margin: 0;
     padding: 0;
     background: #fdc9d1;
     font-size: 12px;
+    cursor: url('../img/cursor.svg') 16 16, auto;
     overflow: auto;
-}
-
-#mainDiv {
+    font-family: "Work Sans", sans-serif;
+  }
+  
+  /* Стилі для стартового екрану */
+  #startScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fdc9d1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  #startButton {
+    padding: 10px 71px;
+    font-size: 4em;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff4d79;
+    color: #fff;
+    transition: background-color 0.3s;
+  }
+  
+  #startButton:hover {
+    background-color: #7c1f37;
+  }
+  
+  /* Основний контент сторінки */
+  #mainDiv {
     width: 100%;
     height: 100%;
-    /* Основний контент буде показаний через JS після досягнення часу */
-}
-
-#loveHeart {
+    position: relative;
+    padding-bottom: 60px; /* місце для копірайту */
+  }
+  
+  /* Блок копірайту, завжди внизу */
+  #copyright {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #666;
+    background: transparent;
+    padding: 10px 0;
+    z-index: 100;
+  }
+  
+  #copyright a {
+    color: #666;
+  }
+  
+  /* Решта оригінальних стилів */
+  #loveHeart {
     float: left;
     width: 670px;
     height: 620px;
     position: relative;
-}
-
-#garden {
+  }
+  
+  #garden {
     width: 100%;
     height: 100%;
-}
-
-#elapseClock {
+  }
+  
+  #elapseClock {
     text-align: right;
     font-size: 18px;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-#words {
+  }
+  
+  #words {
     font-family: "sans-serif";
     width: 500px;
     font-size: 24px;
     color: #666;
-}
-
-#messages {
+  }
+  
+  #messages {
     display: none;
-}
-
-#elapseClock .digit {
+  }
+  
+  #elapseClock .digit {
     font-family: "digit";
     font-size: 36px;
-}
-
-#loveu {
+  }
+  
+  #loveu {
     padding: 5px;
     font-size: 22px;
     margin-top: 80px;
     margin-right: 120px;
     text-align: right;
     display: none;
-}
-
-#loveu .signature {
+  }
+  
+  #loveu .signature {
     margin-top: 10px;
     font-size: 20px;
-}
-
-#clickSound {
-    display: none;
-}
-
-#code {
+  }
+  
+  /* Важлива правка: приховуємо елемент #code до запуску typewriter */
+  #code {
+    visibility: hidden;
     float: left;
     width: 440px;
-    margin-top: 60px !important;
-    height: 400px;
+    margin-top: 20px !important;
+    min-height: 400px;  /* початкова висота, але блок може розширюватися */
+    height: auto;
     color: #333;
-    font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
+    font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", sans-serif;
     font-size: 12px;
-}
-
-#code .string {
+  }
+  
+  #code .string {
     color: #2a36ff;
-}
-
-#code .keyword {
+  }
+  
+  #code .keyword {
     color: #7f0055;
     font-weight: bold;
-}
-
-#code .placeholder {
+  }
+  
+  #code .placeholder {
     margin-left: 15px;
-}
-
-#code .space {
+  }
+  
+  #code .space {
     margin-left: 7px;
-}
-
-#code .comments {
+  }
+  
+  #code .comments {
     color: #3f7f5f;
-}
-
-#errorMsg {
+  }
+  
+  #errorMsg {
     width: 100%;
     text-align: center;
     font-size: 24px;
     position: absolute;
     top: 100px;
     left: 0;
-}
-
-#copyright {
-    margin-top: 40px;
-    text-align: center;
+  }
+  
+  /* Стилі прелоадера (якщо використовуються окремо) */
+  #preloader {
     width: 100%;
-    color: #666;
-}
-
-#copyright a {
-    color: #666;
-}
-
-/* Стилі прелоадера */
-#preloader {
-  width: 100%;
-  height: 100vh;
-  background: #fdc9d1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 9999;
-}
-
-#preloader h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-#preloader p {
-  font-size: 1.2em;
-}
+    height: 100vh;
+    background: #fdc9d1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 9999;
+  }
+  
+  #preloader h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  #preloader p {
+    font-size: 1.2em;
+  }
+  

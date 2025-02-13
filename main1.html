@@ -18,8 +18,21 @@
     <script src="js/garden.js"></script>
     <script src="js/functions.js"></script>
     <script>
-      $(document).ready(function() {
-        // Встановлюємо дату початку стосунків (налаштовується)
+      /* Якщо функції adjustLayout() та adjustCodePosition() ще не визначені, задаємо їх тут */
+      function adjustCodePosition() {
+        // Приклад: ви можете встановити вертикальний відступ для #code, щоб він був центрований.
+        // $("#code").css("margin-top", ($("#loveHeart").height() - $("#code").height()) / 2);
+      }
+
+      function adjustLayout() {
+        window.offsetX = $("#loveHeart").width() / 2;
+        window.offsetY = $("#loveHeart").height() / 2 - 55;
+        adjustCodePosition();
+        console.log("adjustLayout: offsetX =", window.offsetX, "offsetY =", window.offsetY);
+      }
+
+      // Функція для запуску анімацій після появи основного контенту
+      function initAnimations() {
         var together = new Date();
         together.setFullYear(2024, 1, 24);
         together.setHours(12);
@@ -41,27 +54,47 @@
           setTimeout(function () {
             startHeartAnimation();
           }, 5000);
-          
+
           timeElapse(together);
           setInterval(function () {
             timeElapse(together);
           }, 500);
-          
+
+          // Перед запуском typewriter робимо елемент видимим, щоб уникнути "flash" повного тексту
+          $("#code").css("visibility", "visible");
           $("#code").typewriter();
         }
         adjustLayout();
-      });
-
-      function adjustLayout() {
-        window.offsetX = $("#loveHeart").width() / 2;
-        window.offsetY = $("#loveHeart").height() / 2 - 55;
-        adjustCodePosition();
       }
+
+      // При завантаженні сторінки ховаємо основний контент і чекаємо натискання кнопки "Почати"
+      $(document).ready(function() {
+        $("#mainDiv").hide();
+        $("#startButton").click(function(){
+          // Запускаємо фонову музику (зациклену)
+          document.getElementById("backgroundMusic").play();
+          $("#startScreen").fadeOut(500, function(){
+            $("#mainDiv").fadeIn(500, function(){
+              initAnimations();
+            });
+          });
+        });
+      });
     </script>
   </head>
   <body>
+    <!-- Тег аудіо з зацикленням музики -->
+    <audio id="backgroundMusic" src="../music/love.mp3" preload="auto" loop></audio>
+
+    <!-- Стартовий екран, який покриває весь екран -->
+    <div id="startScreen">
+      <button id="startButton">🖤</button>
+    </div>
+
+    <!-- Основний контент сторінки (спочатку прихований) -->
     <div id="mainDiv">
       <div id="content">
+        <!-- Елемент з кодом; спочатку прихований через CSS (див. main1.css) -->
         <div id="code">
           <span class="comments">##</span><br/>
           <span class="comments"># Я програміст,</span><br/>
@@ -97,7 +130,7 @@
           <span class="placeholder"></span><span class="keyword">else</span>:<br/>
           <span class="placeholder"></span><span class="placeholder"></span>everything = u<br/>
           <span class="comments"># Наші стосунки — це найдорожче, що я маю, і я хочу, щоб вони тривали вічно.</span><br/>
-          i.marry(u, in_the_future=<span class="keyword">True</span>)<br/>
+          i.commit(u, eternally=<span class="keyword">True</span>)<br/>
           i.live_happily_forever_with(u)<br/>
           <span class="comments"># Кожен день із тобою — це найбільше щастя у моєму житті</span><br/>
           <span class="comments"># Я кохаю тебе вічно.</span><br/>

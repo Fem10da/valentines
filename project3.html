@@ -6,7 +6,12 @@
     <title>Наш День Святого Валентина</title>
     <link rel="stylesheet" href="css/project3.css">
   </head>
-  <body>
+  <body style="cursor: url('../img/cursor.svg') 16 16, auto;">
+    <!-- Невидимий оверлей для запуску аудіо з напівпрозорим текстом -->
+    <button id="startAudio" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; opacity: 5; z-index: 9999; background: transparent; border: none;">
+      <span id="startText">Приклади лапку ♥️</span>
+    </button>
+
     <div class="container">
       <div class="one">
         <h1 class="one">
@@ -44,13 +49,12 @@
         <img src="img/vector.jpg" alt="" class="girl-dp" id="imagePath">
         <div class="wish">
           <h3 class="wish-hbd">Щасливого дня Святого Валентина, красуне</h3>
-          <h5 id="wishText">куч куч</h5>
         </div>
       </div>
       <div class="seven">
         <div class="baloons">
           <img src="img/balloon.svg" alt="" />
-           <img src="img/music-note.svg" alt="" /> 
+          <img src="img/music-note.svg" alt="" /> 
           <img src="img/smiling.svg" />
           <img src="img/heart.svg" />
           <img src="img/happy.svg" alt="" /> 
@@ -64,30 +68,75 @@
           <img src="img/1.jpeg" alt="" />
           <img src="img/music-note.svg" alt="" />
           <img src="img/5.jpeg" />
-          
           <img src="img/heart.svg" />
           <img src="img/balloon.svg" alt="" />
           <img src="img/heart.svg" />
           <img src="img/heart.svg" />
           <img src="img/music-note.svg" alt="" />
           <img src="img/smiling.svg" />
-         
           <img src="img/happy.svg" alt="" />
           <img src="img/4.jpeg" alt="" />
           <img src="img/heart.svg" />
-          <!-- <img src="img/music-note.svg" alt="" /> -->
-          <!-- <img src="img/heart.svg" />
-          
-          <img src="img/happy.svg" alt="" />
-          <img src="img/balloon.svg" alt="" />
-          <img src="img/music-note.svg" alt="" /> -->
+          <!-- Коментарі з зайвими зображеннями -->
           <img src="img/smiling.svg" />
-          <!-- <img src="img/heart.svg" /> -->
-          <!-- <img src="img/happy.svg" alt="" /> -->
+          <img src="img/6.jpeg" />
+          <img src="img/music-note.svg" alt="" />
+          <img src="img/7.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/8.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/9.jpeg" />
+          <img src="img/10.jpeg" />
+          <img src="img/smiling.svg" />
+          <img src="img/heart.svg" />
+          <img src="img/happy.svg" alt="" /> 
+          <img src="img/11.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/12.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/13.jpeg" />
+          <img src="img/14.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/15.jpeg" />
+          <img src="img/16.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/18.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/17.jpeg" />
+          <img src="img/19.jpeg" />
+          <img src="img/smiling.svg" />
+          <img src="img/heart.svg" />
+          <img src="img/happy.svg" alt="" /> 
+          <img src="img/16.jpeg" />
+          <img src="img/16.jpeg" />
+          <img src="img/smiling.svg" />
+          <img src="img/smiling.svg" />
+          <img src="img/smiling.svg" />
+          <img src="img/18.jpeg" />
+          <img src="img/16.jpeg" />
+          <img src="img/smiling.svg" />
+          <img src="img/16.jpeg" />
+          <img src="img/16.jpeg" />
+          <img src="img/smiling.svg" />
+          <img src="img/20.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/20.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/20.jpeg" />
+          <img src="img/20.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/20.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/20.jpeg" />
+          <img src="img/20.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/20.jpeg" />
+          <img src="img/heart.svg" />
+          <img src="img/20.jpeg" />
         </div>
       </div>
       <div class="eight">
-        <svg viewBox="0 0 40 40" xmlnssvg/heart.svg.org/2000/svg">
+        <svg viewBox="0 0 40 40" xmlnssvg/heart.svg.org/2000/svg>
           <circle cx="20" cy="20" r="20" />
         </svg>
         <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
@@ -122,15 +171,30 @@
       </div>
     </div>
 
+    <!-- Фонове аудіо (шлях до файлу має бути правильним) -->
+    <audio id="bgMusic" src="../music/background.mp3" loop></audio>
+
     <!-- Підключення зовнішніх бібліотек для анімації -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script type="text/babel" src="js/main.js"></script>
     <script>
-      // Приклад: при кліку на кнопку «Надіслати» (fake-btn) виконується перехід до наступного етапу
+      // Обробка кліку на кнопку "Надіслати"
       document.getElementById("nextButton").addEventListener("click", function() {
         console.log("project3.html: Перехід до етапу Жартівлива пропозиція");
         window.location.href = "project2.html";
+      });
+      
+      // Обробка кліку по невидимому оверлею для запуску аудіо
+      document.getElementById("startAudio").addEventListener("click", function() {
+        const bgMusic = document.getElementById("bgMusic");
+        bgMusic.play().then(() => {
+          console.log("Фонова музика запустилась");
+        }).catch((error) => {
+          console.error("Помилка запуску музики:", error);
+        });
+        // Видаляємо кнопку, щоб вона не заважала подальшим взаємодіям
+        this.remove();
       });
     </script>
   </body>

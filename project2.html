@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,21 +17,37 @@
       </div>
 
       <div class="buttons">
-        <!-- Прибрали onclick="showMessage('No')" -->
+        <!-- Видаляємо onclick для кнопки "Ні" -->
         <button class="button no" id="no-button">Ні</button>
-        <!-- Кнопка “Так” лишається з onclick -->
+        <!-- Кнопка "Так" залишається з onclick -->
         <button class="button yes" onclick="showMessage('Yes')" id="yesButton">Так</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Універсальна функція
+    // Глобальна змінна для збереження поточного аудіо
+    let currentAudio = null;
+    
+    // Лічильник наведеннь для кнопки "Ні"
+    let hoverCount = 0;
+
+    // Функція для відтворення аудіо з зупинкою попереднього
+    function playAudio(src) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(src);
+      currentAudio.play().catch(error => console.error("Помилка відтворення аудіо:", error));
+    }
+
+    // Універсальна функція для обробки вибору
     function showMessage(response) {
       if (response === "No") {
-        const noButton   = document.getElementById("no-button");
-        const container  = document.querySelector(".container");
-        const containerWidth  = container.offsetWidth  - noButton.offsetWidth;
+        const noButton = document.getElementById("no-button");
+        const container = document.querySelector(".container");
+        const containerWidth = container.offsetWidth - noButton.offsetWidth;
         const containerHeight = container.offsetHeight - noButton.offsetHeight;
   
         noButton.style.position = "absolute";
@@ -44,50 +60,62 @@
         noButton.style.top  = randomY + "px";
   
         document.getElementById("question").textContent = "Альо, ти що там задумала?";
-        document.getElementById("name").style.display   = "none";
+        document.getElementById("name").style.display = "none";
       }
   
       if (response === "Yes") {
-        // Видаляємо елементи, які більше не потрібні
+        // Перед відтворенням нової пісні зупиняємо поточну
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
+  
+        // Видаляємо непотрібні елементи
         document.getElementById("name").remove();
         document.getElementById("no-button").remove();
   
         const yesMessage = document.getElementById("question");
-        yesMessage.textContent     = "Ти моя Bubu 😘";
-        yesMessage.style.display   = "block";
+        // Обгортаємо текст у <span> із класом special-text для окремого форматування
+        yesMessage.innerHTML = '<span class="special-text">Ти моя Bubu 😘</span>';
+        yesMessage.style.display = "block";
         yesMessage.style.fontStyle = "normal";
         document.getElementsByClassName("image")[0].src = "images/kiss.gif";
   
         document.getElementById("yesButton").remove();
   
+        // Відтворення іншої пісні для кнопки "Так"
+        playAudio('../music/joke.mp3'); // Замініть шлях на фактичний
+  
         // Через 15 секунд створюємо кнопку "Продовжимо?"
         setTimeout(function() {
           const continueButton = document.createElement("button");
           continueButton.textContent = "Продовжимо?";
-          continueButton.classList.add("button"); // Використовуємо той же клас, що й інші кнопки
+          continueButton.classList.add("button");
           continueButton.id = "continueButton";
             
           continueButton.addEventListener("click", function() {
             window.location.href = "main1.html"; // Замініть на потрібну адресу
           });
             
-          // Додаємо кнопку до контейнера кнопок
           document.querySelector(".buttons").appendChild(continueButton);
         }, 15000);
       }
     }
   
-    // 1) Знаходимо кнопку “Ні”
     const noButton = document.getElementById('no-button');
   
-    // 2) Додаємо універсальний обробник для десктопів і телефонів.
+    // Обробник події pointerdown залишається без змін
     noButton.addEventListener('pointerdown', function(event) {
       event.preventDefault(); 
       showMessage('No');
     });
   
-    // (НЕобов'язково) Якщо бажаєш, щоб при наведенні мишкою теж спрацьовувало:
+    // Обробник події mouseenter – відслідковуємо кількість наведеннь та при другому запускаємо музику
     noButton.addEventListener('mouseenter', function() {
+      hoverCount++;
+      if (hoverCount === 1) {
+        playAudio('../music/sad.mp3'); // Замініть шлях на фактичний
+      }
       showMessage('No');
     });
   </script>

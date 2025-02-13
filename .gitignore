@@ -1,2 +1,4 @@
 /.idea
 бекап/
+.DS_Store
+.gitignore
