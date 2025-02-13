@@ -263,11 +263,11 @@ const animationTimeline = () => {
 
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
-    window.location.href = "project2.html";
+    window.location.href = "../html/project2.html";
   });
 };
 const fetchData = () => {
-  fetch("customize.json")
+  fetch("../js/customize.json")
     .then((data) => data.json())
     .then((data) => {
       Object.keys(data).map((customData) => {

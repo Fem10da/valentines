@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/project2.css">
+  <link rel="stylesheet" href="../css/project2.css">
   <title>Valentine's Proposal</title>
 </head>
 <body>
   <div class="container">
     <div class="Mainprompt">
-      <img class="image" src="images/cute.gif" alt="Cute GIF">
+      <img class="image" src="../images/cute.gif" alt="Cute GIF">
       
       <div class="text">
         <h1 class="hh" id="name">Привіт, красуне!</h1>
@@ -27,6 +27,7 @@
   <script>
     let currentAudio = null;
     let hoverCount = 0;
+    
     function playAudio(src) {
       if (currentAudio) {
         currentAudio.pause();
@@ -35,6 +36,7 @@
       currentAudio = new Audio(src);
       currentAudio.play().catch(error => console.error("Помилка відтворення аудіо:", error));
     }
+    
     function showMessage(response) {
       if (response === "No") {
         const noButton = document.getElementById("no-button");
@@ -43,7 +45,7 @@
         const containerHeight = container.offsetHeight - noButton.offsetHeight;
   
         noButton.style.position = "absolute";
-        document.getElementsByClassName("image")[0].src = "images/gun.gif";
+        document.getElementsByClassName("image")[0].src = "../images/gun.gif";
   
         const randomX = Math.max(0, Math.floor(Math.random() * containerWidth));
         const randomY = Math.max(0, Math.floor(Math.random() * containerHeight));
@@ -67,9 +69,10 @@
         yesMessage.innerHTML = '<span class="special-text">Ти моя Bubu 😘</span>';
         yesMessage.style.display = "block";
         yesMessage.style.fontStyle = "normal";
-        document.getElementsByClassName("image")[0].src = "images/kiss.gif";
+        document.getElementsByClassName("image")[0].src = "../images/kiss.gif";
         document.getElementById("yesButton").remove();
-        playAudio('music/joke.mp3'); 
+        
+        playAudio('../music/joke.mp3'); 
   
         setTimeout(function() {
           const continueButton = document.createElement("button");
@@ -96,7 +99,15 @@
     noButton.addEventListener('mouseenter', function() {
       hoverCount++;
       if (hoverCount === 1) {
-        playAudio('music/sad.mp3');
+        playAudio('../music/sad.mp3');
+      }
+      showMessage('No');
+    });
+    
+    noButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      if (hoverCount === 1) {
+        playAudio('../music/sad.mp3');
       }
       showMessage('No');
     });

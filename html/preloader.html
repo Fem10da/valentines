@@ -9,11 +9,11 @@
       Приклади лапку 💔
     </span>
   </button>
-  <audio id="bgMusic" src="music/sad_prev.mp3" loop></audio>
+  <audio id="bgMusic" src="../music/sad_prev.mp3" loop></audio>
   
   <style>
     html, body, * {
-      cursor: url('img/cursor.svg') 16 16, auto;
+      cursor: url('../img/cursor.svg') 16 16, auto;
     }
     body {
       margin: 0;
@@ -71,7 +71,7 @@
     
     function checkPreloaderTime() {
       // Цільовий час: 14 лютого 2025, 10:01:30 (місяці нумеруються від 0)
-      var targetTime = new Date(2025, 1, 14, 10, 2, 30);
+      var targetTime = new Date(2024, 1, 14, 10, 2, 30);
       var now = new Date();
       console.log("preloader.html: Поточний час:", now, "Цільовий час:", targetTime);
       
@@ -81,12 +81,12 @@
       } else {
         console.log("preloader.html: Час настав. Перший етап – 'Ще трішки... все скоро буде'.");
         var preloaderDiv = document.getElementById("preloader");
-        preloaderDiv.innerHTML = '<img src="loading2.gif" alt="Готово"><h1>Ще трішки... все скоро буде</h1>';
+        preloaderDiv.innerHTML = '<img src="../img/loading2.gif" alt="Готово"><h1>Ще трішки... все скоро буде</h1>';
         var bgMusic = document.getElementById("bgMusic");
         fadeOut(bgMusic, 2000, function() {
           bgMusic.pause();
           bgMusic.currentTime = 0;
-          bgMusic.src = "music/preload_track.mp3";
+          bgMusic.src = "../music/preload_track.mp3";
           bgMusic.load();
           bgMusic.loop = true;
           bgMusic.play().then(() => {
@@ -98,12 +98,12 @@
         
         setTimeout(function(){
           console.log("preloader.html: Другий етап – 'Тепер можна подивитися'.");
-          preloaderDiv.innerHTML = '<img src="ready.png" alt="Готово"><h1>Тепер можна подивитися</h1>';
+          preloaderDiv.innerHTML = '<img src="../img/ready.png" alt="Готово"><h1>Тепер можна подивитися</h1>';
           
           fadeOut(bgMusic, 2000, function() {
             bgMusic.pause();
             bgMusic.currentTime = 0;
-            bgMusic.src = "music/final_track.mp3"; 
+            bgMusic.src = "../music/final_track.mp3"; 
             bgMusic.load();
             bgMusic.loop = true;
             bgMusic.play().then(() => {
@@ -115,8 +115,8 @@
           setTimeout(function(){
             console.log("preloader.html: Перехід на project3.html.");
             window.location.href = "project3.html";
-          }, 20000);
-        }, 30000);
+          }, 200);
+        }, 3000);
       }
     }
     
@@ -125,7 +125,7 @@
 </head>
 <body>
   <div id="preloader">
-    <img id="loadingGif" src="loading.gif" alt="Loading...">
+    <img id="loadingGif" src="../img/loading.gif" alt="Loading...">
     <h1>Зачекайте...</h1>
     <p>Цю сторінку ви зможете побачити після 10:00 14 лютого</p>
   </div>
