@@ -71,7 +71,7 @@
     
     function checkPreloaderTime() {
       // Цільовий час: 14 лютого 2025, 10:01:30 (місяці нумеруються від 0)
-      var targetTime = new Date(2024, 1, 14, 10, 2, 30);
+      var targetTime = new Date(2025, 1, 14, 10, 2, 30);
       var now = new Date();
       console.log("preloader.html: Поточний час:", now, "Цільовий час:", targetTime);
       
@@ -115,8 +115,8 @@
           setTimeout(function(){
             console.log("preloader.html: Перехід на project3.html.");
             window.location.href = "project3.html";
-          }, 200);
-        }, 3000);
+          }, 20000);
+        }, 30000);
       }
     }
     
