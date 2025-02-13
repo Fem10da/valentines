@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
-  font-size: 35px;
+  font-size: 35px; 
   color: rgb(255, 0, 174);
   position: fixed;
   height: 100vh;
