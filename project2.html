@@ -84,7 +84,7 @@
         document.getElementById("yesButton").remove();
   
         // Відтворення іншої пісні для кнопки "Так"
-        playAudio('../music/joke.mp3'); // Замініть шлях на фактичний
+        playAudio('music/joke.mp3'); // Замініть шлях на фактичний
   
         // Через 15 секунд створюємо кнопку "Продовжимо?"
         setTimeout(function() {
@@ -114,7 +114,7 @@
     noButton.addEventListener('mouseenter', function() {
       hoverCount++;
       if (hoverCount === 1) {
-        playAudio('../music/sad.mp3'); // Замініть шлях на фактичний
+        playAudio('music/sad.mp3'); // Замініть шлях на фактичний
       }
       showMessage('No');
     });
