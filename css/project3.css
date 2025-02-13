@@ -118,8 +118,8 @@ body {
 
 .wish-hbd {
   font-size: 3em;
-  white-space: normal;        /* дозволяє браузеру переносити слова на основі розмірів контейнера */
-  overflow-wrap: break-word;  /* переносить слова, якщо вони занадто довгі */
+  white-space: normal;       
+  overflow-wrap: break-word;
   word-break: normal; 
 }
 
@@ -233,7 +233,7 @@ body {
   font-size: 3em;
   margin: 0;
   white-space: normal;
-  overflow-wrap: break-word;  /* переносить слова, якщо вони занадто довгі */
+  overflow-wrap: break-word; 
   word-break: normal; 
 }
 
@@ -253,7 +253,6 @@ body {
   cursor: pointer;
 }
 
-/* Стилі для тексту на кнопці запуску аудіо */
 #startText {
   position: absolute;
   top: 50%;
@@ -319,7 +318,7 @@ body {
   .wish-hbd {
     font-size: 2.3em;
     white-space: normal;
-    overflow-wrap: break-word;  /* переносить слова, якщо вони занадто довгі */
+    overflow-wrap: break-word;
     word-break: normal; 
   }
 

@@ -1,6 +1,4 @@
-// Таймлайн анімації
 const animationTimeline = () => {
-  // Розділити символи, які потрібно анімувати окремо
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
 
@@ -263,14 +261,11 @@ const animationTimeline = () => {
       "+=1"
     );
 
-  // Перезапуск анімації при кліку
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
     window.location.href = "project2.html";
   });
 };
-
-// Імпорт даних для налаштування та вставки їх у сторінку
 const fetchData = () => {
   fetch("customize.json")
     .then((data) => data.json())
@@ -289,7 +284,6 @@ const fetchData = () => {
     });
 };
 
-// Запуск отримання даних та анімації послідовно
 const resolveFetch = () => {
   return new Promise((resolve, reject) => {
     fetchData();

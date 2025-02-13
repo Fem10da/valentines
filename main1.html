@@ -4,23 +4,19 @@
     <meta charset="UTF-8">
     <title>Наша Історія Кохання</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Підключаємо стилі для фінального контенту -->
     <link rel="stylesheet" href="css/main1.css">
-    <!-- Підключення шрифту для ефекту typewriter -->
     <style>
       @font-face {
         font-family: digit;
         src: url('digital.ttf') format("truetype");
       }
     </style>
-    <!-- Підключаємо необхідні JS-бібліотеки -->
     <script src="js/jquery.js"></script>
     <script src="js/garden.js"></script>
     <script src="js/functions.js"></script>
     <script>
-      /* Якщо функції adjustLayout() та adjustCodePosition() ще не визначені, задаємо їх тут */
       function adjustCodePosition() {
-        // Приклад: ви можете встановити вертикальний відступ для #code, щоб він був центрований.
+        // Ви можете встановити вертикальний відступ для #code, щоб він був центрований.
         // $("#code").css("margin-top", ($("#loveHeart").height() - $("#code").height()) / 2);
       }
 
@@ -31,7 +27,6 @@
         console.log("adjustLayout: offsetX =", window.offsetX, "offsetY =", window.offsetY);
       }
 
-      // Функція для запуску анімацій після появи основного контенту
       function initAnimations() {
         var together = new Date();
         together.setFullYear(2024, 1, 24);
@@ -41,7 +36,6 @@
         together.setMilliseconds(0);
         console.log("main1.html: таймер встановлено:", together);
 
-        // Перевірка підтримки canvas
         if (!document.createElement('canvas').getContext) {
           var msg = document.createElement("div");
           msg.id = "errorMsg";
@@ -60,19 +54,14 @@
             timeElapse(together);
           }, 500);
   
-          
-          // Перед запуском typewriter робимо елемент видимим, щоб уникнути "flash" повного тексту
           $("#code").css("visibility", "visible");
           $("#code").typewriter();
         }
         adjustLayout();
       }
-
-      // При завантаженні сторінки ховаємо основний контент і чекаємо натискання кнопки "Почати"
       $(document).ready(function() {
         $("#mainDiv").hide();
         $("#startButton").click(function(){
-          // Запускаємо фонову музику (зациклену)
           document.getElementById("backgroundMusic").play();
           $("#startScreen").fadeOut(500, function(){
             $("#mainDiv").fadeIn(500, function(){
@@ -84,18 +73,12 @@
     </script>
   </head>
   <body>
-    <!-- Тег аудіо з зацикленням музики -->
     <audio id="backgroundMusic" src="music/love.mp3" preload="auto" loop></audio>
-
-    <!-- Стартовий екран, який покриває весь екран -->
     <div id="startScreen">
       <button id="startButton">🖤</button>
     </div>
-
-    <!-- Основний контент сторінки (спочатку прихований) -->
     <div id="mainDiv">
       <div id="content">
-        <!-- Елемент з кодом; спочатку прихований через CSS (див. main1.css) -->
         <div id="code">
           <span class="comments">##</span><br/>
           <span class="comments"># Я програміст,</span><br/>

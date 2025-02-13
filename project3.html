@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/project3.css">
   </head>
   <body style="cursor: url('css/cursor.svg') 16 16, auto;">
-    <!-- Невидимий оверлей для запуску аудіо з напівпрозорим текстом -->
     <button id="startAudio" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; opacity: 5; z-index: 9999; background: transparent; border: none;">
       <span id="startText">Приклади лапку ♥️</span>
     </button>
@@ -28,7 +27,6 @@
           <p class="hbd-chatbox">
             Як відсвяткувати перший найкращий день Святого Валентина?
           </p>
-          <!-- Кнопка, яка викликає анімацію або одразу переводить до наступного етапу -->
           <p class="fake-btn" id="nextButton">Надіслати</p>
         </div>
       </div>
@@ -78,7 +76,6 @@
           <img src="img/happy.svg" alt="" />
           <img src="img/4.jpeg" alt="" />
           <img src="img/heart.svg" />
-          <!-- Коментарі з зайвими зображеннями -->
           <img src="img/smiling.svg" />
           <img src="img/6.jpeg" />
           <img src="img/music-note.svg" alt="" />
@@ -170,22 +167,16 @@
         <p class="last-smile">:)</p>
       </div>
     </div>
-
-    <!-- Фонове аудіо (шлях до файлу має бути правильним) -->
     <audio id="bgMusic" src="music/background.mp3" loop></audio>
-
-    <!-- Підключення зовнішніх бібліотек для анімації -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script type="text/babel" src="js/main.js"></script>
     <script>
-      // Обробка кліку на кнопку "Надіслати"
       document.getElementById("nextButton").addEventListener("click", function() {
         console.log("project3.html: Перехід до етапу Жартівлива пропозиція");
         window.location.href = "project2.html";
       });
       
-      // Обробка кліку по невидимому оверлею для запуску аудіо
       document.getElementById("startAudio").addEventListener("click", function() {
         const bgMusic = document.getElementById("bgMusic");
         bgMusic.play().then(() => {
@@ -193,7 +184,6 @@
         }).catch((error) => {
           console.error("Помилка запуску музики:", error);
         });
-        // Видаляємо кнопку, щоб вона не заважала подальшим взаємодіям
         this.remove();
       });
     </script>

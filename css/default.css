@@ -1,4 +1,3 @@
-/* Основні стилі */
 body {
     margin: 0;
     padding: 0;
@@ -10,7 +9,6 @@ body {
 #mainDiv {
     width: 100%;
     height: 100%;
-    /* Основний контент буде показаний через JS після досягнення часу */
 }
 
 #loveHeart {
@@ -117,7 +115,6 @@ body {
     color: #666;
 }
 
-/* Стилі прелоадера */
 #preloader {
   width: 100%;
   height: 100vh;

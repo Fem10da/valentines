@@ -1,5 +1,3 @@
-// functions.js
-
 var $window = $(window),
     gardenCtx, gardenCanvas, $garden, garden;
 var clientWidth = $(window).width();
@@ -7,7 +5,6 @@ var clientHeight = $(window).height();
 
 $(function () {
     $loveHeart = $("#loveHeart");
-    // Не встановлюємо offsetX/offsetY тут – вони обчислюватимуться в adjustLayout()
     $garden = $("#garden");
     gardenCanvas = $garden[0];
     gardenCanvas.width = $("#loveHeart").width();

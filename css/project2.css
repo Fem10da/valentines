@@ -1,5 +1,3 @@
-/* project2.css — стилі для сторінки "Жартівлива пропозиція" */
-
 body {
   margin: 0;
   background-color: #ffdde1;
@@ -87,7 +85,6 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 
-/* Стиль для спеціального тексту "Ти моя Bubu 😘" */
 .special-text {
   -webkit-text-stroke: 2px #71004f;
   font-size: 55px;
@@ -95,7 +92,6 @@ body {
   font-weight: 800;
 }
 
-/* Адаптив - приклад */
 @media (max-width: 575px) {
   body {
     position: static; 

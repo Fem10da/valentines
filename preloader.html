@@ -12,7 +12,6 @@
   <audio id="bgMusic" src="music/sad_prev.mp3" loop></audio>
   
   <style>
-    /* Стилі прелоадера */
     html, body, * {
       cursor: url('img/cursor.svg') 16 16, auto;
     }
@@ -36,59 +35,111 @@
     #preloader p {
       font-size: 1.2em;
     }
-    /* Стилі для зображень */
     #preloader img {
       max-width: 100%;
       margin-bottom: 20px;
     }
   </style>
+  
   <script>
-    // Функція перевірки часу та редіректу
+    function fadeOut(audio, duration, callback) {
+      var interval = 50;
+      var steps = duration / interval;
+      var stepVolume = audio.volume / steps;
+      var fadeInterval = setInterval(function() {
+        audio.volume = Math.max(0, audio.volume - stepVolume);
+        if (audio.volume <= 0) {
+          clearInterval(fadeInterval);
+          if (callback) callback();
+        }
+      }, interval);
+    }
+    
+    function fadeIn(audio, targetVolume, duration, callback) {
+      audio.volume = 0;
+      var interval = 50;
+      var steps = duration / interval;
+      var stepVolume = targetVolume / steps;
+      var fadeInterval = setInterval(function() {
+        audio.volume = Math.min(targetVolume, audio.volume + stepVolume);
+        if (audio.volume >= targetVolume) {
+          clearInterval(fadeInterval);
+          if (callback) callback();
+        }
+      }, interval);
+    }
+    
     function checkPreloaderTime() {
-      // (місяці рахуються від 0, тому для лютого використовується 1)
-      var targetTime = new Date(2025, 1, 14, 10, 0, 0);
+      // Цільовий час: 14 лютого 2025, 10:01:30 (місяці нумеруються від 0)
+      var targetTime = new Date(2025, 1, 14, 10, 2, 30);
       var now = new Date();
       console.log("preloader.html: Поточний час:", now, "Цільовий час:", targetTime);
       
-      if (now >= targetTime) {
-        console.log("preloader.html: Час настав. Оновлення вмісту прелоадера.");
-        var preloaderDiv = document.getElementById("preloader");
-        // Замінюємо вміст: показуємо інше зображення та текст
-        preloaderDiv.innerHTML = '<img src="ready.png" alt="Готово"><h1>Тепер можна подивитися</h1>';
-        // Через 3 секунди редірект на main.html
-        setTimeout(function(){
-          console.log("preloader.html: Перехід на main.html.");
-          window.location.href = "project3.html";
-        }, 3000);
-      } else {
+      if (now < targetTime) {
         console.log("preloader.html: Ще рано, перевірка через 10 секунд.");
         setTimeout(checkPreloaderTime, 10000);
+      } else {
+        console.log("preloader.html: Час настав. Перший етап – 'Ще трішки... все скоро буде'.");
+        var preloaderDiv = document.getElementById("preloader");
+        preloaderDiv.innerHTML = '<img src="loading2.gif" alt="Готово"><h1>Ще трішки... все скоро буде</h1>';
+        var bgMusic = document.getElementById("bgMusic");
+        fadeOut(bgMusic, 2000, function() {
+          bgMusic.pause();
+          bgMusic.currentTime = 0;
+          bgMusic.src = "music/preload_track.mp3";
+          bgMusic.load();
+          bgMusic.loop = true;
+          bgMusic.play().then(() => {
+            fadeIn(bgMusic, 1, 2000);
+          }).catch((error) => {
+            console.error("Помилка запуску нового треку:", error);
+          });
+        });
+        
+        setTimeout(function(){
+          console.log("preloader.html: Другий етап – 'Тепер можна подивитися'.");
+          preloaderDiv.innerHTML = '<img src="ready.png" alt="Готово"><h1>Тепер можна подивитися</h1>';
+          
+          fadeOut(bgMusic, 2000, function() {
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+            bgMusic.src = "music/final_track.mp3"; 
+            bgMusic.load();
+            bgMusic.loop = true;
+            bgMusic.play().then(() => {
+              fadeIn(bgMusic, 1, 3000);
+            }).catch((error) => {
+              console.error("Помилка запуску фінального треку:", error);
+            });
+          });
+          setTimeout(function(){
+            console.log("preloader.html: Перехід на project3.html.");
+            window.location.href = "project3.html";
+          }, 20000);
+        }, 30000);
       }
     }
     
-    // Запуск перевірки після завантаження документа
     document.addEventListener('DOMContentLoaded', checkPreloaderTime, false);
   </script>
 </head>
 <body>
   <div id="preloader">
-    <!-- GIF для очікування -->
     <img id="loadingGif" src="loading.gif" alt="Loading...">
     <h1>Зачекайте...</h1>
     <p>Цю сторінку ви зможете побачити після 10:00 14 лютого</p>
   </div>
-  <script> 
-     // Обробка кліку по невидимому оверлею для запуску аудіо
-     document.getElementById("startAudio").addEventListener("click", function() {
-        const bgMusic = document.getElementById("bgMusic");
-        bgMusic.play().then(() => {
-          console.log("Фонова музика запустилась");
-        }).catch((error) => {
-          console.error("Помилка запуску музики:", error);
-        });
-        // Видаляємо кнопку, щоб вона не заважала подальшим взаємодіям
-        this.remove();
+  
+  <script>
+    document.getElementById("startAudio").addEventListener("click", function() {
+      const bgMusic = document.getElementById("bgMusic");
+      bgMusic.play().then(() => {
+        console.log("Фонова музика запустилась");
+      }).catch((error) => {
+        console.error("Помилка запуску музики:", error);
       });
+      this.remove();
+    });
   </script>
 </body>
 </html>
