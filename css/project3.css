@@ -1,15 +1,17 @@
 html, body, * {
-  cursor: url('img/cursor.svg') 16 16, auto;
+  cursor: url('cursor.svg') 16 16, auto;
 }
 
 html {
   box-sizing: border-box;
+  cursor: url('cursor.svg') 16 16, auto;
 }
 
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
   background: #fdc9d1;
+  cursor: url('cursor.svg') 16 16, auto;
 }
 
 .container {
